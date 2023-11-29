@@ -42,6 +42,7 @@ export const updateListing = async (req, res, next) => {
     const updatedListing = await Listing.findByIdAndUpdate(
       req.params.id,
       req.body,
+      //do this, otherwise you will only get the previous outcome
       { new: true }
     );
     res.status(200).json(updatedListing);
