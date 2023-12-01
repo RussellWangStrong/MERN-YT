@@ -70,6 +70,7 @@ export const getListings = async (req, res, next) => {
     let offer = req.query.offer;
 
     if (offer === undefined || offer === 'false') {
+      //  if offer is not defined,we want the listing whose can be offer or not.
       offer = { $in: [false, true] };
     }
 
@@ -98,6 +99,7 @@ export const getListings = async (req, res, next) => {
     const order = req.query.order || 'desc';
 
     const listings = await Listing.find({
+      // regex is a way of string matching；"i" means don't care about the lower or uppercase.
       name: { $regex: searchTerm, $options: 'i' },
       offer,
       furnished,
